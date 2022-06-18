@@ -1,18 +1,17 @@
 def stock_picker(prices)
-  results = []
-  big = 0
-  p s_prices = prices.sort
-  p prices
+  stonk_indexes = []
+  stonks = []
+  p asc_prices = prices.sort
+  p des_prices = prices.sort.reverse
 
-  # possible solution 3. not working as intended yet.
-  s_prices.each_with_index do |element, i|
-    if s_prices[-i] - s_prices[i] > big
-      big = s_prices[-i] - s_prices[i]
-      results.push([prices.index(s_prices[i]), prices.index(s_prices[-i])])
+  # possible solution No.3 test
+  des_prices.each_with_index do |des_e, i|
+    asc_prices.each_with_index do |asc_e, j|
+      stonks.push(des_e - asc_e)
+      stonk_indexes.push([j, i])
     end
-    p big
   end
-  results
+  stonk_indexes
 end
 p stock_picker([17,3,6,9,15,8,6,1,10])
 
