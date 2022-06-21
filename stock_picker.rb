@@ -1,26 +1,29 @@
 def stock_picker(prices)
-  result = []
-  stonk_indexes = []
-  stonks = []
-  big = 0
-  p asc_prices = prices.sort
-  p des_prices = prices.sort.reverse
+  tmp = []
+  profit_indexes = []
+  profits = []
+  asc_prices = prices.sort
+  des_prices = prices.sort.reverse
 
   # possible solution No.3 test
   des_prices.each_with_index do |des_e, i|
     asc_prices.each_with_index do |asc_e, j|
-      stonks.push(des_e - asc_e)
-      stonk_indexes.push([j, i])
-      end
+      profits.push(des_e - asc_e)
+      profit_indexes.push([j, i])
     end
+  end
   
-  stonk_indexes.each_with_index do |item, i|
-    if stonks[i] > big && stonk_indexes[i][0] < stonk_indexes[i][1]
-      result.push([stonk_indexes[i][0], stonk_indexes[i][1]])
+  p profit_indexes
+  puts "\n"
+
+  # puts the valid (buy b4 sell) stock intex pairs in a tmp array
+  profit_indexes.each_with_index do |item, i|
+    if profit_indexes[i][0] < profit_indexes[i][1]
+      tmp.push([profit_indexes[i][0], profit_indexes[i][1]])
     end
   end
 
-  result
+  tmp
 end
 p stock_picker([17,3,6,9,15,8,6,1,10])
 
