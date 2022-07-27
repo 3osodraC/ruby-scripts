@@ -6,14 +6,10 @@ def caesar_cipher(string, key)
   ascii_arr = string.bytes
 
   str_arr.map.with_index do |char, i|
-    # Encrypts characters, ensuring z -> a wrapping 
+    # Encrypts characters, ensuring z -> a wrapping
     # and that only letters are encrypted.
-    if /[[:upper:]]/.match(char)
-      ascii_arr[i] = ((ascii_arr[i] - 65 + key) % 26) + 65
-    end
-    if /[[:lower:]]/.match(char)
-      ascii_arr[i] = ((ascii_arr[i] - 97 + key) % 26) + 97
-    end
+    ascii_arr[i] = ((ascii_arr[i] - 65 + key) % 26) + 65 if /[[:upper:]]/.match(char)
+    ascii_arr[i] = ((ascii_arr[i] - 97 + key) % 26) + 97 if /[[:lower:]]/.match(char)
   end
 
   # Transforms the encrypted ascii array into a string, prints, and returns.

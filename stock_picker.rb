@@ -5,8 +5,8 @@ def stock_picker(prices)
   des_prices = prices.sort.reverse
 
   # finds best buy and sell days
-  des_prices.each_with_index do |des_e, i|
-    asc_prices.each_with_index do |asc_e, j|
+  des_prices.each do |des_e|
+    asc_prices.each do |asc_e|
       # checks purchase validity by checking if buy day is before sell day
       if prices.index(asc_e) < prices.index(des_e)
         profits.push(des_e - asc_e)
@@ -17,4 +17,4 @@ def stock_picker(prices)
     end
   end
 end
-p stock_picker([17,3,6,9,15,8,6,1,10])
+p stock_picker([17, 3, 6, 9, 15, 8, 6, 1, 10])
